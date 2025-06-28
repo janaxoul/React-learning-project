@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 
 
 function App() {
-  const movieNumber = 2;
+  const movieNumber = 1;
 
   return (
     <div>
