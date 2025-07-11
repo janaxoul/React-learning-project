@@ -1,9 +1,11 @@
 import { nanoid } from 'nanoid';
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ProductContext } from '../utils/Context';
+import { toast } from 'react-toastify';
 
 function Create() {
+    const navigate= useNavigate()
     const[products, setproducts]=useContext(ProductContext)
     const [title, settitle]=useState("");
     const [image, setimage] = useState("");
@@ -21,8 +23,9 @@ function Create() {
             description
         }
         setproducts([...products, product])
-        console.log(product)
-        console.log(products)
+        localStorage.setItem("products", JSON.stringify([...products, product]))
+        toast.success("Product added successfully")
+        navigate("/")
     }
 return (
     <div className='relative w-screen h-screen flex justify-center items-center'>

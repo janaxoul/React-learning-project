@@ -11,24 +11,14 @@ function Home() {
     const {search}=useLocation();
     const category= decodeURIComponent(search.split("=")[1]);
 
-    const getProductsCategory=async()=>{
-        try{
-            const{data}=await axios.get(`/products/category/${category}`)
-            console.log(data)
-            setfilteredProducts(data)
-        }
-        catch(err){
-            console.log(err)
-        }
-    }
-
     useEffect(() => {
         if(!filteredProducts || category=="undefined"){
             setfilteredProducts(products);
         }
         if(category != "undefined"){
-            getProductsCategory();
-            console.log(filteredProducts)
+            // getProductsCategory();
+            setfilteredProducts(products.filter(item=>item.category== category))
+
         }
 
     }, [category,products]);
